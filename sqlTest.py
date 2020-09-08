@@ -153,9 +153,9 @@ printSQLResults(myresult)
 # mydb.commit()
 # printHeader("INSERT some data into the products table")
 
-# Using JOIN select all users where their favorite product is in the products table
-printHeader("Using mysql JOIN")
-sql = "SELECT users.username, products.name FROM users INNER JOIN products ON products.name = products.id"
-mycursor.execute(sql)
-myresult = mycursor.fetchall()
-printSQLResults(myresult)
+# # Using JOIN select all users where their favorite product is in the products table
+# printHeader("Using mysql JOIN")
+# sql = "SELECT users.username, products.name FROM users INNER JOIN products ON products.name = products.id"
+# mycursor.execute(sql)
+# myresult = mycursor.fetchall()
+# printSQLResults(myresult)
