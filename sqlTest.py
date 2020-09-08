@@ -107,20 +107,55 @@ mycursor.execute(sql, address)
 mydb.commit()
 print(mycursor.rowcount, "record(s) where updated!")
 
-# # CREATE ANOTHER TABLE
-printHeader("Created a new table 'users'")
-# mycursor.execute("CREATE TABLE users (username VARCHAR(255), password VARCHAR(255))")
+# # ALTER THE USERS TABLE
+# mycursor.execute("ALTER TABLE users ADD COLUMN fav VARCHAR(255)")
+# printHeader("ALTER users table")
 
-# INSERT INTO NEW TABLE
-printHeader("INSERT INTO USERS TABLE")
-sql = "INSERT INTO users (username, password) VALUES (%s, %s)"
+# # TEST PRINTING of users table
+# printHeader("Testing printing of users table")
+# mycursor.execute("SELECT * FROM users")
+# myresult = mycursor.fetchall()
+# printSQLResults(myresult)
+
+# INSERT INTO USERS TABLE
+sql = "INSERT INTO users (username, password, fav) VALUES (%s, %s, %s)"
 users = [
-    ('jakepaul2525', '12345'),
-    ('jakeFromStatefarm', 'bigsavings'),
-    ('geico', 'carinsurance'),
-    ('myMom', 'password')
+    ('Carlos', '12345', 'Cars'),
+    ('Paula', 'bigsavings', 'Planes'),
+    ('Joseph', 'carinsurance', 'Washing Machines'),
+    ('SomeoneIdk', 'password', 'Nothing')
 ]
 mycursor.executemany(sql, users)
+mydb.commit()
+printHeader("INSERTED DATA INTO USERS TABLE")
 
-# Using JOIN
+
+# # Create ANOTHER products table
+# mycursor.execute("CREATE TABLE products (id INT AUTO_INCREMENT PRIMARY KEY, name VARCHAR(255)) ")
+# printHeader("Created a new table 'products'")
+
+# TEST PRINTING of products table
+printHeader("Testing printing of products table")
+mycursor.execute("SELECT * FROM products")
+myresult = mycursor.fetchall()
+printSQLResults(myresult)
+
+# INSERT data into products table
+# sql = "INSERT INTO products (name) VALUES (%s)"
+# products = [
+#     ('Planes',),
+#     ('Games',),
+#     ('Cookies',),
+#     ('Fun',),
+#     ('Nothing',)
+# ]
+# mycursor.executemany(sql, products)
+# mydb.commit()
+# printHeader("INSERT some data into the products table")
+
+# Using JOIN select all users where their favorite product is in the products table
 printHeader("Using mysql JOIN")
+sql = "SELECT users.username, products.name FROM users INNER JOIN products ON products.name = products.id"
+mycursor.execute(sql)
+myresult = mycursor.fetchall()
+printSQLResults(myresult)
