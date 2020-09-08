@@ -35,7 +35,7 @@ printHeader("All my databases")
 for x in mycursor:
     print(x)
 
-# # Create a table
+# Create a table
 # mycursor.execute("CREATE TABLE customers (id INT AUTO_INCREMENT PRIMARY KEY, name VARCHAR(255), address VARCHAR(255)) ")
 
 # Show all the tables in myDB
@@ -94,9 +94,15 @@ printSQLResults(myresult)
 
 # print(mycursor.rowcount, "Record(s) deleted!")
 
-# DROP TABLES
-print("Dropping table customers")
-sql = "DROP TABLE IF EXISTS customers"
-mycursor.execute(sql)
+# # DROP TABLES
+# print("Dropping table customers")
+# sql = "DROP TABLE IF EXISTS customers"
+# mycursor.execute(sql)
 
 # UPDATE a table
+printHeader("Update customer's w/ address = somewhere to Margaritaville")
+sql = "UPDATE customers SET address = %s WHERE address = %s"
+address = ("Margaritaville", "Somewhere",)
+mycursor.execute(sql, address)
+mydb.commit()
+print(mycursor.rowcount, "record(s) where updated!")
