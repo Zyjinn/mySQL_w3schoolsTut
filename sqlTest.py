@@ -6,6 +6,9 @@ import mysql.connector
 def printHeader(string):
     print(f'\n*** {string} ***')
 
+# Take in some sql results and loop through them, printing all results'
+# Given a mysql results object, 
+# Print all results in the object
 def printSQLResults(result):
     for x in result:
         print(x)
@@ -82,7 +85,7 @@ myresult = mycursor.fetchall()
 printSQLResults(myresult)
 
 # # DELETE RECORDS
-# printHeader("deleting sql records")
+# printHeader("deleting sql records where name = Jake in customers")
 # sql = "DELETE FROM customers WHERE name = %s"
 # name = ("Jake",)
 # mycursor.execute(sql, name)
@@ -91,3 +94,9 @@ printSQLResults(myresult)
 
 # print(mycursor.rowcount, "Record(s) deleted!")
 
+# DROP TABLES
+print("Dropping table customers")
+sql = "DROP TABLE IF EXISTS customers"
+mycursor.execute(sql)
+
+# UPDATE a table
