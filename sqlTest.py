@@ -106,3 +106,21 @@ address = ("Margaritaville", "Somewhere",)
 mycursor.execute(sql, address)
 mydb.commit()
 print(mycursor.rowcount, "record(s) where updated!")
+
+# # CREATE ANOTHER TABLE
+printHeader("Created a new table 'users'")
+# mycursor.execute("CREATE TABLE users (username VARCHAR(255), password VARCHAR(255))")
+
+# INSERT INTO NEW TABLE
+printHeader("INSERT INTO USERS TABLE")
+sql = "INSERT INTO users (username, password) VALUES (%s, %s)"
+users = [
+    ('jakepaul2525', '12345'),
+    ('jakeFromStatefarm', 'bigsavings'),
+    ('geico', 'carinsurance'),
+    ('myMom', 'password')
+]
+mycursor.executemany(sql, users)
+
+# Using JOIN
+printHeader("Using mysql JOIN")
