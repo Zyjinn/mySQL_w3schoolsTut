@@ -153,7 +153,7 @@ printSQLResults(myresult)
 # mydb.commit()
 # printHeader("INSERT some data into the products table")
 
-# # Using JOIN select all users where their favorite product is in the products table
+# # Using JOIN select all users favorite products id and using the products table return the name of the product
 # printHeader("Using mysql JOIN")
 # sql = "SELECT users.username, products.name FROM users INNER JOIN products ON products.name = products.id"
 # mycursor.execute(sql)
